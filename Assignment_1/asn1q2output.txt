@@ -1,0 +1,21 @@
+
+Name: Mohammed Thamidur Rashid
+NSID: mor867
+Course: CMPT 214
+
+Output from the console
+-----------------------
+Enter the diameter: 3
+The radius of the circle is 1.500000 
+The area of the circle is 7.07 
+The circumference is 9.42 
+
+Enter the diameter: 8
+The radius of the circle is 4.000000 
+The area of the circle is 50.27 
+The circumference is 25.13 
+
+Enter the diameter: 50
+The radius of the circle is 25.000000 
+The area of the circle is 1963.50 
+The circumference is 157.08 
