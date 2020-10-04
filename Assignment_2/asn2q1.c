@@ -2,7 +2,7 @@
 Name: Mohammed Thamidur Rashid
 NSID: mor867
 Course: CMPT 214
-Assignment 1
+Assignment 2
 */
 
 #include "stdio.h"
@@ -20,4 +20,5 @@ int main(){
   } 
   printf("The secret code to open the door: %d", reverse);
   return 0;
+
 }

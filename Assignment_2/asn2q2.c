@@ -2,13 +2,14 @@
 Name: Mohammed Thamidur Rashid
 NSID: mor867
 Course: CMPT 214
-Assignment 1
+Assignment 2
 */
 
 #include "stdio.h"
 
 int checkTriangleValidity(int x, int y, int z)
 {
+  // returning 1 if the triagle is geometrically valid 0 otherwise.
   if ((x + y > z) && (x + z > y) && (y + z > x))
   {
     return 1;
@@ -31,7 +32,6 @@ int main()
   printf("Enter the value of z: ");
   scanf("%lf", &z);
 
-  // printf("The sides that are entered by the user is: %f ,%f, %f", x, y, z);
   
   if (checkTriangleValidity(x, y, z) == 1)
   {

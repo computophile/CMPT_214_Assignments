@@ -1,0 +1,26 @@
+/*
+Name: Mohammed Thamidur Rashid
+NSID: mor867
+Course: CMPT 214
+Assignment 2
+*/
+
+Enter the value of x: 5
+Enter the value of y: 5
+Enter the value of z: 5
+The Triangle is valid
+
+Enter the value of x: 45
+Enter the value of y: 8
+Enter the value of z: 8
+The triangle is not valid
+
+Enter the value of x: 5
+Enter the value of y: 8
+Enter the value of z: 13
+The triangle is not valid
+
+Enter the value of x: 25
+Enter the value of y: 12
+Enter the value of z: 14
+The Triangle is valid

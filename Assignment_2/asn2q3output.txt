@@ -1,0 +1,29 @@
+/*
+Name: Mohammed Thamidur Rashid
+NSID: mor867
+Course: CMPT 214
+Assignment 2
+*/
+
+Enter the total fixed one time costs , f : 50
+Enter the expenses to raise one chicken , e : 4
+Enter the unit price charged per chicken , u : 6
+Enter the required profit , p : 500
+The number of chickens that Mary bought to raise 500.00 is : 324
+The number of chickens lost during the first 16 weeks was : 17 
+
+
+Enter the total fixed one time costs , f : 50
+Enter the expenses to raise one chicken , e : 4
+Enter the unit price charged per chicken , u : 6
+Enter the required profit , p : 1000
+The number of chickens that Mary bought to raise 1000.00 is : 618
+The number of chickens lost during the first 16 weeks was : 31 
+
+
+Enter the total fixed one time costs , f : 70
+Enter the expenses to raise one chicken , e : 5
+Enter the unit price charged per chicken , u : 10
+Enter the required profit , p : 1500
+The number of chickens that Mary bought to raise 1500.00 is : 349
+The number of chickens lost during the first 16 weeks was : 18 

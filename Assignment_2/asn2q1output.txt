@@ -1,0 +1,15 @@
+/*
+Name: Mohammed Thamidur Rashid
+NSID: mor867
+Course: CMPT 214
+Assignment 2
+*/
+
+The number entered by the user: 123456
+The secret code to open the door: 654321
+
+The number entered by the user: 456700
+The secret code to open the door: 7654
+
+The number entered by the user: 987456
+The secret code to open the door: 654789
