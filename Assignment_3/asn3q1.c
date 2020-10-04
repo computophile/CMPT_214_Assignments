@@ -7,27 +7,29 @@ Student Number: 1280257
 
 #include <stdio.h>
 
-// opening a file
-int main(){
-  FILE *file;
-  
-  file = fopen("text.txt", "w");
+int main()
+{
 
-  if (file == NULL){
-    printf("text.txt could not be found or couldn't be opened for writing.\n");
-    return 1;
+  int number;
+  FILE *fp;
 
+  fp = fopen("treasure_journal.txt", "w");
+
+  if (fp != NULL)
+  {
+    printf("Enter positive treasure values: ");
+    scanf("%d", &number);
+
+    while (number > 0)
+    {
+      fprintf(fp, "%d\n", number);
+      printf("Enter positive treasure values: ");
+      scanf("%d", &number);
+    }
   }
-  else{
-    printf("File opened successfully! Time to write to the file!\n");
-    printf("Enter a number to write to the file: ");
-    int n;
-    scanf("%d", &n);
-
-    // writing to the file
-    fprintf(file, "%d", n);
-    fclose(file);
+  else
+  {
+    printf("Error reading/creating the file");
+    return 0;
   }
-
-  return 0;
 }
