@@ -20,7 +20,7 @@ int main()
     printf("Enter positive treasure values: ");
     scanf("%d", &number);
 
-    while (number > 0)
+    while (number >= 0)
     {
       fprintf(fp, "%d\n", number);
       printf("Enter positive treasure values: ");
