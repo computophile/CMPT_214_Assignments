@@ -20,37 +20,44 @@ int main()
 
   fscanf(fp, "%d", &number_of_weeks);
 
-  for (int i = 1; i <= number_of_weeks; i++)
+  if (fp != NULL)
   {
-    // for-loop to loop through the number of weeks of shipments
-    // defined in the first line of the file;
-
-    int wineCases;
-
-    fscanf(fp, "%d", &wineCases);
-
-    totalWineCases += wineCases;
-    // initializing the value of min;
-    if (i == 1)
+    for (int i = 1; i <= number_of_weeks; i++)
     {
-      min = wineCases;
-    }
+      // for-loop to loop through the number of weeks of shipments
+      // defined in the first line of the file;
 
-    if (wineCases > max)
-    {
-      max = wineCases;
+      int wineCases;
+
+      fscanf(fp, "%d", &wineCases);
+
+      totalWineCases += wineCases;
+      // initializing the value of min;
+      if (i == 1)
+      {
+        min = wineCases;
+      }
+
+      if (wineCases > max)
+      {
+        max = wineCases;
+      }
+      if (wineCases < min)
+      {
+        min = wineCases;
+      }
     }
-    if (wineCases < min)
-    {
-      min = wineCases;
-    }
+    fclose(fp); //closing the file;
+
+    printf("The largest shipment size: %d\nThe smallest shipment size: %d \n", max, min);
+    printf("Total shipment size: %d\n", totalWineCases);
+    printf("Number of weeks: %d\n", number_of_weeks);
+    printf("The average shipment size: %0.2f", (float)(totalWineCases / number_of_weeks));
+    return 0;
   }
-  fclose(fp); //closing the file;
-
-  printf("The largest shipment size: %d\nThe smallest shipment size: %d \n", max, min);
-  printf("Total shipment size: %d\n", totalWineCases);
-  printf("Number of weeks: %d\n", number_of_weeks);
-  printf("The average shipment size: %0.2f", (float)(totalWineCases / number_of_weeks));
-
-  return 0;
+  else
+  {
+    printf("Error reading the file / Not enough permission!");
+    return 1;
+  }
 }

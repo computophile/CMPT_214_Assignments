@@ -13,9 +13,9 @@ int main()
   int number;
   FILE *fp;
 
-  fp = fopen("treasure_journal.txt", "w");
+  fp = fopen("treasure_journal.txt", "a");
 
-  if (fp != NULL)
+  if (fp != NULL) //checking if the file was read correctly
   {
     printf("Enter positive treasure values: ");
     scanf("%d", &number);
@@ -26,11 +26,12 @@ int main()
       printf("Enter positive treasure values: ");
       scanf("%d", &number);
     }
-  fclose(fp);//closing the file
+    fclose(fp); //closing the file
+    return 0;
   }
   else
   {
     printf("Error reading/creating the file");
-    return 0;
+    return 1;
   }
 }
