@@ -26,6 +26,7 @@ int main()
       printf("Enter positive treasure values: ");
       scanf("%d", &number);
     }
+  fclose(fp);//closing the file
   }
   else
   {
