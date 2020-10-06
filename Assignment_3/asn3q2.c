@@ -12,21 +12,26 @@ int main()
   FILE *fp;
   int max, min, totalWineCases;
   totalWineCases = 0;
+  int number_of_weeks;
   max = 0; //initializing min with 0 since the number of shipments will be bigger than 0;
 
   fp = fopen("test_data.txt", "r");
 
-  int number_of_weeks;
-
-  fscanf(fp, "%d", &number_of_weeks);
 
   if (fp != NULL)
   {
+    fscanf(fp, "%d", &number_of_weeks);
+
+    if(feof(fp))
+    {
+      printf("File is empty!\n");
+      return 0;
+    }
+
     for (int i = 1; i <= number_of_weeks; i++)
     {
       // for-loop to loop through the number of weeks of shipments
       // defined in the first line of the file;
-
       int wineCases;
 
       fscanf(fp, "%d", &wineCases);
@@ -57,7 +62,7 @@ int main()
   }
   else
   {
-    printf("Error reading the file / Not enough permission!");
+    printf("File doesn't exist / Not enough permission!\n");
     return 1;
   }
 }
