@@ -13,9 +13,10 @@ int main(){
   float price_2018[10], price_2020[10], totalPrice2020 = 0, totalPrice2018 = 0;
   fp = fopen("food.txt", "r");
   // reading the file to skip the first line
-  fgets(name, 1000, fp);
 
   if(fp){
+  fgets(name, 1000, fp);
+
     printf("File is read:\n");
 
     for (int i = 0; i < 10; i++){
