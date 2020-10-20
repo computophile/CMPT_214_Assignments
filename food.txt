@@ -1,0 +1,14 @@
+Item Unit Price_in_2018 Price_in_2020
+Round_Steak 1kg 17.38 18.50
+Chicken 1kg 7.21 7.50
+Apples 1kg 4.25 4.03
+Carrots 1kg 2.3 2.27
+Onions 1kg 2.2 1.94
+Eggs 1dz 3.6 3.23
+Butter 454g 5.17 4.85
+Bananas 1kg 1.55 1.58
+Oranges 1kg 3.58 3.48
+Mushrooms 1kg 9.03 8.74
+
+
+

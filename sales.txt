@@ -1,0 +1,9 @@
+Saturday Number_Sold Unit_Price Total_Sales
+Strawberry 43 3.50 63.0
+Chunky_Monkey 18 2.95 53.1
+Avacado 6 3.95 23.7
+Fieldberry 102 4.25 433.5
+Orange 79 3.69 291.51
+Tropical 87 4.75 413.25
+
+

@@ -2,7 +2,7 @@
 Name: Mohammed Thamidur Rashid
 NSID: mor867  
 Course: CMPT 214
-Student Number: 1280257
+Student Number: 11280257
 */
 #include <stdio.h>
 int calcSmoothies(int n, int *strawberries, double *sugar, double *fruitJuice)
