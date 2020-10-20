@@ -5,7 +5,6 @@ Student #: 11280257
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 typedef struct smoothie
 {
@@ -15,49 +14,28 @@ typedef struct smoothie
   float totalSales;
 } Smoothie;
 
-float highestSold (char fileName[100]){
-  float maxSale = 0.0;
-  Smoothie sm;
-  FILE *fp;
-  fp = fopen(fileName, "r");
-// skip the first line of the text file
-  char c[1];//dummy variable for fgets
-  fgets(c, 100, fp);
-  float price, totalSales = 0.0;
-  int unitSold;
-  char bestSellerName[100];
-  
-    while (!feof(fp))
-    {
-      fscanf(fp, "%s %d %f %f", sm.name, &sm.unitSold, &sm.price, &sm.totalSales);
-      if (sm.totalSales > maxSale){
-        maxSale = sm.totalSales;
-      }
-
-    }
-  fclose(fp);
-  return maxSale;
-}
-
 Smoothie bestSeller(char name[100])
 {
-  Smoothie bestSmoothie;
+  Smoothie bestSmoothie, sm;
 
   FILE *fp;
   fp = fopen(name, "r");
-
+  float highestSelling = 0.0;
   if (fp)
   {
-    float highestSelling = highestSold(name);
-    while (!feof(fp))
+    int i = 0;
+    while (fscanf(fp, "%s %d %f %f", sm.name, &sm.unitSold, &sm.price, &sm.totalSales) != EOF)
     {
-      fscanf(fp, "%s %d %f %f", bestSmoothie.name, &bestSmoothie.unitSold, &bestSmoothie.price, &bestSmoothie.totalSales);
-      if (bestSmoothie.totalSales == highestSelling){
-        printf("I ma ");
-        break;
+      if (sm.totalSales > highestSelling)
+      {
+
+        highestSelling = sm.totalSales;
+        strcpy(bestSmoothie.name, sm.name);
+        bestSmoothie.price = sm.price;
+        bestSmoothie.totalSales = sm.totalSales;
+        bestSmoothie.unitSold = sm.unitSold;
       }
     }
-
   }
   fclose(fp);
   return bestSmoothie;
