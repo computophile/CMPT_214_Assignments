@@ -17,12 +17,12 @@ typedef struct smoothie
 Smoothie bestSeller(char name[100])
 {
   Smoothie bestSmoothie, sm;
-
   FILE *fp;
   fp = fopen(name, "r");
   float highestSelling = 0.0;
-  if (fp)
+  if (fp != NULL)
   {
+ 
     int i = 0;
     while (fscanf(fp, "%s %d %f %f", sm.name, &sm.unitSold, &sm.price, &sm.totalSales) != EOF)
     {
@@ -36,6 +36,10 @@ Smoothie bestSeller(char name[100])
         bestSmoothie.unitSold = sm.unitSold;
       }
     }
+  }
+  else{
+    printf("Error Reading File/Not enough Permission\n");
+    return;
   }
   fclose(fp);
   return bestSmoothie;

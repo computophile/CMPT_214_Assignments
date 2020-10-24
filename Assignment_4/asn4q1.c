@@ -14,7 +14,7 @@ int main(){
   fp = fopen("food.txt", "r");
 
 
-  if(fp){
+  if(fp != NULL){
   fgets(name, 1000, fp);//skipping the first line
     int i = 0;
     while (fscanf(fp,"%s %s %f %f", name, weight, &price_2018[i], &price_2020[i])!=EOF)
@@ -25,6 +25,12 @@ int main(){
     }
     
   }
+  else
+  {
+    printf("Error Reading Files/Not enough Permissions.\n");
+    return 1;
+  }
+  
   printf("Total cost of all the items in 2018: %0.2f\n", totalPrice2018);
   printf("Total cost of all the items in 2020: %0.2f\n", totalPrice2020);
   printf("The differenece in the total cost: %0.2f\n", (totalPrice2018-totalPrice2020));
