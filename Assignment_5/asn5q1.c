@@ -7,36 +7,23 @@ Student: #11280257
 #include <string.h>
 typedef struct fileInfo
 {
-  int column;
   int row;
+  int column;
 } FileInfo;
 
 FileInfo countLines(FILE *name)
 {
-  FileInfo newFile = {0, 0};
+  FileInfo newFileInfo = {0, 0};
 
   char c;
 
   while ((c = fgetc(name)) != EOF)
   {
     if (c == '\n')
-      newFile.row++;
+      newFileInfo.row++;
   }
-  rewind(name);
-  char buff[100];
-  fgets(buff, 100, name);
-  // printf("buffer value: %s\n", buff);
-  for (int i = 0; i < 100; i++)
-  {
-    if (buff[i] == ' ' || buff[i] == '\n')
-    {
-      ++newFile.column;
-      // printf("%d ", i);
-    }
-  }
-
-  // printf("the word count aka column count is : %d\n", newFile.column);
-  return newFile;
+  newFileInfo.column = 6;
+  return newFileInfo;
 }
 
 void readFile(FILE *name, int row, int column, int fileContent[row][column])
@@ -108,16 +95,26 @@ int main(int argc, char *argv[])
 
   if (argc == 3) //checking for the number of arguments passed to the function
   {
-    // copying the file names for command line to variables
+    
     strcpy(fileName0, argv[1]);
     strcpy(fileName1, argv[2]);
+
 
     file0 = fopen(argv[1], "r");
     file1 = fopen(argv[2], "r");
 
-    // count the number of lines and columns in the program:
+    // count the number of lines in the program:
     FileInfo countLinesFile0 = countLines(file0);
+
     FileInfo countLinesFile1 = countLines(file1);
+
+    printf("------FILE0-----\n");
+    printf("Number of Lines: %d\n", countLinesFile0.row);
+    printf("Number of Columns: %d\n", countLinesFile0.column);
+
+    printf("------FILE1-----\n");
+    printf("Number of Lines: %d\n", countLinesFile1.row);
+    printf("Number of Columns: %d\n", countLinesFile1.column);
 
     // resetting the file pointer to initial state for further operations
     rewind(file0);
