@@ -5,6 +5,7 @@ Student: #11280257
 */
 #include <stdio.h>
 #include <string.h>
+
 typedef struct fileInfo
 {
   int row;
@@ -52,7 +53,7 @@ void modifyFileName(char fileName[], char modifiedFileName[]){
         fileName[i] = '\0';
       }
     } 
-    sprintf(modifiedFileName, "%s-revisedCopy.txt", fileName);
+    sprintf(modifiedFileName, "%s-revised.txt", fileName);
 }
 
 void writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[row][column]){
@@ -64,7 +65,7 @@ void writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[r
     weekDays[2] = "Wednesday";
     weekDays[3] = "Thursday";
     weekDays[4] = "Friday";
-    printf("The value of row: %d, The value of Column: %d\n", row, column);
+    
   if (newFile != NULL)
     {
       printf("Writing to the file");
@@ -74,7 +75,6 @@ void writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[r
       for (int i = 0; i < row; i++)
       {
         fprintf(newFile, "%s", weekDays[i]);
-        printf("The value of dummy : %s\n", weekDays[i]);
 
         for (int j = 0; j < column; j++)
         {
@@ -100,8 +100,8 @@ int main(int argc, char *argv[])
     strcpy(fileName1, argv[2]);
 
 
-    file0 = fopen(argv[1], "r");
-    file1 = fopen(argv[2], "r");
+    file0 = fopen(fileName0, "r");
+    file1 = fopen(fileName1, "r");
 
     // count the number of lines in the program:
     FileInfo countLinesFile0 = countLines(file0);
