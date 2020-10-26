@@ -9,14 +9,29 @@ int countLines(FILE *name)
 {
   int linesCount = 0;
   char c;
+  int wordCount = 0;
+  
   while ((c = fgetc(name)) != EOF)
   {
-
     if (c == '\n')
       linesCount++;
   }
+  rewind(name);
+  char buff[100];
+  fgets(buff, 100, name);
+  printf("buffer value: %s\n", buff);
+  for(int i =0; i< 100; i++){
+    		if(buff[i] == ' ' || buff[i] == '\n')
+		{
+			++wordCount;	
+              printf("%d ", i);
+              if (i ==160)
+              printf("The value @ 160 %c:\n", buff[i]);
+		} 
+  }
   // int data_fruits[][];
-  return linesCount - 1; //-1 for the first line
+  printf("the word count aka column count is : %d\n", wordCount);
+  return linesCount -1; //-1 for the first line
 }
 
 int main(int argc, char *argv[])
@@ -27,18 +42,21 @@ int main(int argc, char *argv[])
   fruits = fopen("fruitsCopy.txt", "r+");
 
   // count the number of lines in the program:
-
-  int countLinesFruit = countLines(fruits);
   int countLinesDairy = countLines(dairy);
 
-  printf("%d\n", countLinesFruit);
-  printf("%d\n", countLinesDairy);
+  int countLinesFruit = countLines(fruits);
+
+
+  printf("COunt lines dairy value: %d\n", countLinesDairy);
+
+  printf("Count LInes fruit %d\n", countLinesFruit);
 
   rewind(fruits);
   rewind(dairy);
 
   int itemsCount = 5;
-  int *fruitCount[itemsCount][countLinesFruit], *dairyCount[itemsCount][countLinesDairy];
+  int fruitCount[itemsCount][countLinesFruit], 
+  dairyCount[itemsCount][countLinesDairy];
 
 // reading the fruits file
   if (fruits != NULL)
@@ -115,20 +133,32 @@ printf("After the values are swapped-- showing dairy count\n");
 // reading the dairy file
 rewind (dairy);
 printf("writing the dairy file swapping from fruits \n");
+const char *weekDays[5];
+weekDays[0] = "Monday";
+weekDays[1] = "Tuesday";
+weekDays[2] = "Wednesday";
+weekDays[3] = "Thursday";
+weekDays[4] = "Friday";
+
     if (dairy != NULL)
   {
+
     char buff[1000];
-    fgets(buff, 1000, dairy);
+    fgets(buff, 1000, dairy); //skip the first line!
+
     for (int i = 0; i < countLinesDairy; i++)
     {
-      char dummy[1000];
-      fscanf(dairy, "%s", dummy);
-  
+      char dummy[20];
+      fprintf(dairy, "%s", weekDays[i]);
+      printf("The value of dummy : %s\n", weekDays[i]);
+      
       for (int j = 0; j < itemsCount; j++)
       {
         fprintf(dairy, " %d", dairyCount[i][j]);
+        printf("%d ",  dairyCount[i][j]);
       }
-      fprintf(dairy, "\n");
+      printf("putting a new line\n");
+      fprintf(dairy, " \n");
     }
   }
   fclose(dairy);
