@@ -13,7 +13,20 @@ Student: #11280257
 //   int column;
 // } FileInfo;
 
-int countLines(FILE *name)
+void display_sales(char header[][15], u_int32_t *fileCount, u_int32_t row){
+      for (int i = 0; i < row - 1; i++)
+    {
+      printf("Total %s sales: ", header[i]);
+      u_int32_t totalCount = 0;
+      for (int j = 0; j < 5; j++)
+      {
+        totalCount += fileCount[j * 5 + i];
+      }
+      printf("%u\n", totalCount);
+    }
+}
+
+u_int32_t countLines(FILE *name)
 {
   char c;
   int countLines = 0;
@@ -25,57 +38,6 @@ int countLines(FILE *name)
   }
 
   return countLines;
-}
-
-void readFile(FILE *name, int row, int column, int fileContent[row][column])
-{
-  if (name != NULL)
-  {
-    char buff[1000];
-    fgets(buff, 1000, name);
-    for (int i = 0; i < row; i++)
-    {
-      char dummy[1000];
-      fscanf(name, "%s", dummy);
-      for (int j = 0; j < column; j++)
-      {
-        fscanf(name, "%d", &fileContent[i][j]);
-      }
-    }
-  }
-}
-
-void writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[row][column])
-{
-
-  // defining the weekdays
-  const char *weekDays[5];
-  weekDays[0] = "Monday";
-  weekDays[1] = "Tuesday";
-  weekDays[2] = "Wednesday";
-  weekDays[3] = "Thursday";
-  weekDays[4] = "Friday";
-  printf("The value of row: %d, The value of Column: %d\n", row, column);
-
-  if (newFile != NULL)
-  {
-    printf("Writing to the file");
-    char buff[1000];
-    fgets(buff, 1000, file); //skip the first line!
-    fprintf(newFile, "%s", buff);
-    for (int i = 0; i < row; i++)
-    {
-      fprintf(newFile, "%s", weekDays[i]);
-      printf("The value of dummy : %s\n", weekDays[i]);
-
-      for (int j = 0; j < column; j++)
-      {
-        fprintf(newFile, " %d", fileCount[i][j]);
-      }
-      fprintf(newFile, " \n");
-    }
-  }
-  fclose(newFile);
 }
 
 // main funciton
@@ -95,11 +57,12 @@ int main(int argc, char *argv[])
     file1 = fopen(fileName1, "r");
 
     // count the number of lines in the program:
-    int countLinesFile0 = countLines(file0);
+    u_int32_t countLinesFile0 = countLines(file0);
 
-    int countLinesFile1 = countLines(file1);
-    
-    if (countLinesFile0<2 || countLinesFile1<2){
+    u_int32_t countLinesFile1 = countLines(file1);
+
+    if (countLinesFile0 < 2 || countLinesFile1 < 2)
+    {
       printf("Less than 2 lines in the file!");
       return 1;
     }
@@ -108,67 +71,97 @@ int main(int argc, char *argv[])
     rewind(file0);
     rewind(file1);
 
-    // char header0[countLinesFile0][6];
-    // char header0[countLinesFile1][6];
-
     // readHeaders
     //-1 to accomodate for the decription row and column.
-    const size_t ROW0 = countLinesFile0 -1;
-    const size_t ROW1 = countLinesFile1 -1;
+    const size_t ROW0 = countLinesFile0 - 1;
+    const size_t ROW1 = countLinesFile1 - 1;
     const size_t COL = 6 - 1;
 
-// dynamically allocating a one-dimensional view of a two dimensional
-// array that can hold all of the unsigned integer data in the file.
+    char header0[COL][15];
+    char header1[COL][15];
 
-    u_int32_t *fileCount0 = (u_int32_t *) malloc(sizeof(u_int32_t) * ROW0 * COL);
-    u_int32_t *fileCount1 = (u_int32_t *) malloc(sizeof(u_int32_t) * ROW1 * COL);
-    
+    char buffer[15];
+    fscanf(file0, "%s", buffer);//for reading DAY
+    for (int i = 0; i < COL; i++)
+    {
+      char header_content[15];
+      fscanf(file0, "%s", header_content);
+      strcpy(header0[i], header_content);
+      printf("%s", header0[i]);
+    }
+
+    char buffer1[15];
+    fscanf(file1, "%s", buffer1);
+    for (int i = 0; i < COL; i++)
+    {
+      char header_content[15];
+      fscanf(file1, "%s", header_content);
+      strcpy(header1[i], header_content);
+      printf("%s ", header1[i]);
+    }
+
+    // dynamically allocating a one-dimensional view of a two dimensional
+    // array that can hold all of the unsigned integer data in the file.
+
+    u_int32_t *fileCount0 = (u_int32_t *)malloc(sizeof(u_int32_t) * ROW0 * COL);
+    u_int32_t *fileCount1 = (u_int32_t *)malloc(sizeof(u_int32_t) * ROW1 * COL);
+
+    rewind(file0);
+    rewind(file1);
+
     // reading the file
     char buff[1000];
     fgets(buff, 1000, file0);
-    for (int i = 0; i < countLinesFile0 -1; i++){
+    for (int i = 0; i < countLinesFile0 - 1; i++)//number of row/lines
+    {
       char weekday[10];
-      fscanf(file0, "%s", weekday);
-      for (int j = 0 ; j < 5; j++){
-          fscanf(file0, "%u", &fileCount0[i * ROW0 + j]);
+      fscanf(file0, "%s", weekday);// to read the weekday
+      for (int j = 0; j < 5; j++)
+      {
+        fscanf(file0, "%u", &fileCount0[i * ROW0 + j]);
       }
     }
 
-// printing for debgugging
-    for (int i = 0; i < countLinesFile0 -1; i++){
+    // printing for debgugging
+    for (int i = 0; i < countLinesFile0 - 1; i++)
+    {
       // char weekday[10];
       // fscanf(file0, "%s", &weekday);
-      for (int j = 0 ; j < 5; j++){
-          printf("%u ", fileCount0[i * ROW0 + j]);
+      for (int j = 0; j < 5; j++)
+      {
+        printf("%u ", fileCount0[i * ROW0 + j]);
       }
       printf("\n");
     }
 
-      printf("\n");
+    printf("\n");
 
     // reading the file1
     fgets(buff, 1000, file1);
-    for (int i = 0; i < countLinesFile1 -1; i++){
+    for (int i = 0; i < countLinesFile1 - 1; i++)
+    {
       char weekday[10];
       fscanf(file1, "%s", weekday);
-      for (int j = 0 ; j < 5; j++){
-          fscanf(file1, "%u", &fileCount1[i * ROW0 + j]);
+      for (int j = 0; j < 5; j++)
+      {
+        fscanf(file1, "%u", &fileCount1[i * ROW0 + j]);
       }
     }
 
-// printing for debgugging1
-    for (int i = 0; i < countLinesFile1 -1; i++){
+    // printing for debgugging1
+    for (int i = 0; i < countLinesFile1 - 1; i++)
+    {
       // char weekday[10];
       // fscanf(file0, "%s", &weekday);
-      for (int j = 0 ; j < 5; j++){
-          printf("%u ", fileCount1[i * ROW1 + j]);
+      for (int j = 0; j < 5; j++)
+      {
+        printf("%u ", fileCount1[i * ROW1 + j]);
       }
       printf("\n");
     }
 
-
-
-
+    display_sales(header0, fileCount0, countLinesFile0);
+    display_sales(header1, fileCount1, countLinesFile1);
     return 0;
   }
   else
