@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 
     u_int32_t countLinesFile1 = countLines(file1);
 
-    if (countLinesFile0 < 2 || countLinesFile1 < 2)
+    if (countLinesFile0 <= 2 || countLinesFile1 <= 2)
     {
       printf("Less than 2 lines in the file!");
       return 1;
@@ -87,7 +87,6 @@ int main(int argc, char *argv[])
       char header_content[15];
       fscanf(file0, "%s", header_content);
       strcpy(header0[i], header_content);
-      printf("%s", header0[i]);
     }
 
     char buffer1[15];
@@ -97,7 +96,6 @@ int main(int argc, char *argv[])
       char header_content[15];
       fscanf(file1, "%s", header_content);
       strcpy(header1[i], header_content);
-      printf("%s ", header1[i]);
     }
 
     // dynamically allocating a one-dimensional view of a two dimensional
@@ -116,7 +114,7 @@ int main(int argc, char *argv[])
     {
       char weekday[10];
       fscanf(file0, "%s", weekday);// to read the weekday
-      for (int j = 0; j < 5; j++)
+      for (int j = 0; j < COL; j++)
       {
         fscanf(file0, "%u", &fileCount0[i * ROW0 + j]);
       }
@@ -163,6 +161,9 @@ int main(int argc, char *argv[])
     display_sales(header0, fileCount0, countLinesFile0);
     display_sales(header1, fileCount1, countLinesFile1);
     return 0;
+    fclose(file0);
+    fclose(file1);
+
   }
   else
   {
