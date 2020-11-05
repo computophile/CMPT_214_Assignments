@@ -10,19 +10,21 @@ Subject: CMPT 214
 
 typedef struct _station
 {
+  // defining the node
   char code[STATION_CODE_LENGTH];
   struct _station *next;
 } Station;
 
 typedef struct _route
 {
+  // keeping track of the route
   Station *first_station;
   unsigned int num_stations;
 } Route;
 
 Route *read_stations(FILE *fp)
 {
-  // read the firs line
+  // Purpose: To read the content of the file and put it
   if (fp != NULL)
   {
     printf("We are reading the file! \n");
@@ -36,20 +38,21 @@ Route *read_stations(FILE *fp)
     Station *station_node = (Station *)malloc(sizeof(Station));
 
     strcpy(station_node->code, city_code);
-    
+
     station_node->next = NULL;
 
     route->first_station = station_node;
 
     route->num_stations = 1;
 
-    while (fscanf(fp, "%s", city_code)!=EOF)
+    while (fscanf(fp, "%s", city_code) != EOF)
     {
       // ;
       // if (feof(fp)){
       //   break;// break if we have reached the end of the file!
       // }
-      if (city_code == "\n" || city_code == "\0"){
+      if (city_code == "\n" || city_code == "\0")
+      {
         break;
       }
       route->num_stations = route->num_stations + 1;
@@ -70,8 +73,10 @@ Route *read_stations(FILE *fp)
     return route;
   }
 }
-void display(Route *route){
-  
+void display(Route *route)
+{
+  // takes a pointer to the Route structure and prints every station code in the list
+  // *route: pointer to the Route Structure
   Station *station = route->first_station;
   while (station != NULL)
   {
@@ -80,24 +85,30 @@ void display(Route *route){
   }
 }
 
-int search(Route *route, char search_code[STATION_CODE_LENGTH])
+int search(Route *route, char c[STATION_CODE_LENGTH])
 {
+  // to display the position number of the station whose code matches c;
+  // *route: pointer to Route srtucture
+  // 3-Character station code
   Station *station = route->first_station;
   int position = 0;
   while (station != NULL)
   {
     ++position;
 
-    if (strcmp(station->code, search_code) == 0)
+    if (strcmp(station->code, c) == 0)
     {
       printf("Code position: %d\n", position);
 
+      // print the next two codes if available
       if (position == route->num_stations - 1)
       {
         printf("The next two codes:\n");
         station = station->next;
         printf("%s\n", station->code);
         printf("Beyond the end of line.\n");
+        return 0;
+
       }
       else if (position == route->num_stations)
       {
@@ -113,24 +124,32 @@ int search(Route *route, char search_code[STATION_CODE_LENGTH])
         printf("%s\n", station->code);
         station = station->next;
         printf("%s\n", station->code);
+        return 0;
+
       }
     }
-    station = station->next;
+    station = station->next;// walk through the node
 
-    if (position == route -> num_stations && station -> next == NULL){
-        printf("Code not found in the list!");
+    if (position == route->num_stations)
+    {
+      //loop though the whole list
+      printf("Code not found in the list!");
     }
   }
-
-
 }
 
 int main()
 {
   FILE *fp;
   fp = fopen("code.txt", "r");
-  Route *route = read_stations(fp);
-  display(route);
+  if (fp == NULL)
+  {
+    printf("Error reading files!\n");
+    return 1;
+  }
+  Route *route = read_stations(fp); //getting the route information
+  
+  display(route);                   //displaying the Codes
 
   char search_code[STATION_CODE_LENGTH];
   printf("Enter code to search: ");

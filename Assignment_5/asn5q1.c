@@ -16,9 +16,8 @@ typedef struct fileInfo
 
 FileInfo countLines(FILE *name)
 {
-
+  //Purpose: counts the number of lines that are in the file and returns a struct
   // *name: pointer to the file that will be read to cound the number of lines
-  //Purpose: counts the number of lines that are in the file
 
   FileInfo newFileInfo = {0, 0};
 
@@ -35,11 +34,11 @@ FileInfo countLines(FILE *name)
 
 int readFile(FILE *name, int row, int column, int fileContent[row][column])
 {
+  // Purpose: to read the file content into the fileContent data structure;
   // *name: pointer to the file that will be read
   // row: number of rows for the fileContent to be stored
   // columns: number of columns for the fileContent to be stored
   // fileContent: 2D array to store the data
-  // Purpose: to read the file;
 
   if (name != NULL)
   {
@@ -66,7 +65,9 @@ int readFile(FILE *name, int row, int column, int fileContent[row][column])
 //
 void modifyFileName(char fileName[], char modifiedFileName[])
 {
-  // modify the name of the files
+  // modify the name of the files,
+  // fileName: received file name, 
+  // modifiedFileName: the modified file name
   for (int i = 0; i < strlen(fileName); i++)
   {
     if (fileName[i] == '.')
@@ -79,7 +80,7 @@ void modifyFileName(char fileName[], char modifiedFileName[])
 
 int writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[row][column])
 {
-  // writing the revised files into the disk;
+  // Purpose: writing the revised files into the disk;
   // *file: pointer to the old file
   // *newFile: pointer to the new file
   // row: number of row to be written;
@@ -114,7 +115,7 @@ int writeToFile(FILE *file, FILE *newFile, int row, int column, int fileCount[ro
   }
   else
   {
-    return 1;//if error
+    return 1;//if error in reading the file
   }
 }
 
