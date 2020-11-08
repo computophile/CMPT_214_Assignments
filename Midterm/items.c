@@ -11,51 +11,60 @@ MIDTERM EXAM
 #include "stdlib.h"
 #include "string.h"
 
-typedef struct loots_linked_list
-{
-  Loot *first_loot;
-  unsigned int num_loots;
-} loots_list;
+int count = 0;
 
-Loot* create_random_loot_list(unsigned int N)
+Loot generate_loot()
+{
+  Loot loot;
+
+  char *prefix = prefixes[random_index(NUM_PREFIXES)];
+  char *baseTypeName = base_types[random_index(NUM_BASE_TYPES)];
+  char *suffix = suffixes[random_index(NUM_SUFFIXES)];
+
+  char *lootName = (char *)malloc(sizeof(char) * 50);
+
+  strcpy(lootName, prefix);
+  strcat(lootName, " ");
+  strcat(lootName, baseTypeName);
+  strcat(lootName, " ");
+  strcat(lootName, suffix);
+
+  unsigned int rarityNum = random_index(NUM_RARITIES);
+  loot.name = lootName;
+  loot.base_type_name = baseTypeName;
+  loot.rarity = rarityNum;
+
+  return loot;
+}
+
+Loot *create_random_loot_list(unsigned int N)
 {
   Loot *loot_list = (Loot *)malloc(sizeof(Loot) * N);
 
-  for (int i = 0; i < N; i++)
+  for (unsigned int i = 0; i < N; i++)
   {
-    char *prefix = prefixes[random_index(NUM_PREFIXES)];
-    char *baseTypeName = base_types[random_index(NUM_BASE_TYPES)];
-    char *suffix = suffixes[random_index(NUM_SUFFIXES)];
-    char nameLoot[36];
-    strcpy(nameLoot, prefix);
-    strcat(nameLoot, " ");
-    strcat(nameLoot, baseTypeName);
-    strcat(nameLoot, " ");
-    strcat(nameLoot, suffix);
-    // printf("%s \n", nameLoot);
-    unsigned int rarityNum = random_index(NUM_RARITIES);
-    loot_list[i].base_type_name = baseTypeName;
-    loot_list[i].name = nameLoot;
-    loot_list[i].rarity = rarityNum;
-    printf(" %s %s %d\n", loot_list[i].name, loot_list[i].base_type_name, loot_list[i].rarity);
+    Loot loot = generate_loot();
+    loot_list[i].base_type_name = loot.base_type_name;
+    loot_list[i].name = loot.name;
+    loot_list[i].rarity = loot.rarity;
   }
-  // free(loot_list);
-  printf("%p\n", loot_list);
   return loot_list;
 }
 
-int main()
+void print_loot(Loot *random_loots)
 {
-  int N = 10;
-  unsigned int random_number = random_index(50);
-  printf("The list of randomly generated loot list: \n");
 
-  Loot *random_loots_list = create_random_loot_list(N);
-  printf("%p\n", random_loots_list);
-
+  for (int i = 0; i < 10; i++)
+  {
+    printf("%s %s, %s\n", random_loots[i].name, rarity[random_loots[i].rarity], random_loots[i].base_type_name);
+  }
+}
+void destroy_random_loot(Loot *random_loots, int N)
+{
+  printf("Destroying the memory.\n");
   for (int i = 0; i < N; i++)
   {
-    printf(" %s \n", random_loots_list[i].name);
+    free(random_loots[i].name);
   }
-  return 0;
+  free(random_loots);
 }

@@ -38,7 +38,7 @@ Route *read_stations(FILE *fp)
     Station *station_node = (Station *)malloc(sizeof(Station));
 
     strcpy(station_node->code, city_code);
-
+  
     station_node->next = NULL;
 
     route->first_station = station_node;

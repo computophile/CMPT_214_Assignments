@@ -10,9 +10,15 @@ typedef struct movie {
 } Movie;
 
 
-int main(){
-
-    printf("%d\n",sizeof(Movie));
-
-    return 0;
-}
+/* Program2.c */ 
+int main() 
+{ 
+    char chr = 'Z'; 
+ 
+    char *p1 = "Hello"; 
+ 
+    p1 = &chr; // OK: Value of p1 can be changed 
+ 
+    printf("the value of p1: %p", p1);
+    return 0; 
+} 
