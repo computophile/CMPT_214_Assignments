@@ -2,10 +2,11 @@
 
 int main()
 {
-  int N = 10;
+  unsigned int N = 5;
   Loot *random_loots = create_random_loot_list(N);
-  print_loot(random_loots);
+  for (unsigned int i = 0; i < N; i++){
+   print_loot(random_loots[i]);
+  }
   destroy_random_loot(random_loots, N);
-
   return 0;
 }

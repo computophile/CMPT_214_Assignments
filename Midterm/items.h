@@ -27,11 +27,12 @@ static char *suffixes[] = { "of Speed", "of Protection", "of Summoning", "of Dan
 static char *rarity[] = { "Common", "Magic", "Epic", "Legendary" };
 
 
+// additional function prototypes for the header file;
 Loot generate_loot();
 
 Loot *create_random_loot_list(unsigned int N);
 
-void print_loot(Loot *random_loots);
+void print_loot(Loot loots);
 
 void destroy_random_loot(Loot *random_loots, int N);
 

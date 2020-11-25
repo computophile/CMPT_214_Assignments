@@ -1,0 +1,52 @@
+29 23
+St.Louis,MO 
+Nottamun,IL  
+EaglePoint,IL
+Chicago,IL 
+SpringGreen,WI 
+ElPaso,IL
+RedBud,IL
+Cairo,IL
+Lakeside,WI
+Madison,WI
+LasVegas,NV
+SanFransisco,CA 
+SiouxFalls,SD
+Providence,RI
+Seattle,WA
+Dallas,TX
+Boulder,CO 
+Minneapolis,MN
+
+Blacksburg,VA
+LookoutMountain,GA
+Ft.Pierce,FL
+St.Louis,MO Nottamun,IL 
+Nottamun,IL EaglePoint,IL
+EaglePoint,IL Chicago,IL 
+Chicago,IL SpringGreen,WI 
+SpringGreen,WI ElPaso,IL
+ElPaso,IL RedBud,IL
+RedBud,IL Cairo,IL
+Cairo,IL Lakeside,WI
+Lakeside,WI Madison,WI
+Madison,WI LasVegas,NV
+LasVegas,NV Lakeside,WI
+Lakeside,WI SanFransisco,CA 
+SanFransisco,CA Lakeside,WI
+Lakeside,WI SiouxFalls,SD
+SiouxFalls,SD Lakeside,WI
+Lakeside,WI Providence,RI
+Providence,RI Seattle,WA
+Seattle,WA Dallas,TX
+Dallas,TX Boulder,CO 
+Boulder,CO Lakeside,WI
+Lakeside,WI Minneapolis,MN
+Minneapolis,MN Cherryville,KS
+Cherryville,KS Lebanon,KS
+Lebanon,KS Blacksburg,VA
+Blacksburg,VA LookoutMountain,GA
+LookoutMountain,GA Ft.Pierce,FL
+Ft.Pierce,FL Lakeside,WI
+Lakeside,WI Chicago,IL 
+Chicago,IL Reykjavik,Iceland

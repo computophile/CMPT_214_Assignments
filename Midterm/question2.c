@@ -18,6 +18,17 @@ typedef struct city
   int destinationCount;                                             // number of destination from the source city
 } City;
 
+void destroy_data_structure(City *cities)
+{
+  /*
+  Function: destroy_data_structure
+  Purpose: to free the memory dynamically allocated to the data structure
+  Parameters: (City *cities) - address location to the first element of the dynamically allocated data structure;
+  Return: void
+  */
+  free(cities); //free the allocated memory;
+}
+
 City *read_cities(FILE *fp)
 {
   /*
@@ -30,7 +41,12 @@ City *read_cities(FILE *fp)
   int entries, uniqueCityNames;
 
   fscanf(fp, "%d %d", &entries, &uniqueCityNames);
-
+  if (feof(fp))
+  {
+    //if the file is corrupted
+    printf("Something went wrong!\n");
+    exit(1);
+  }
   City *cities = (City *)malloc(sizeof(City) * uniqueCityNames); //Dynamically allocated memory to hold an Array of cities
 
   for (int i = 0; i < uniqueCityNames; i++)
@@ -46,7 +62,13 @@ City *read_cities(FILE *fp)
 
     char source[30], destination[30];
     fscanf(fp, "%s %s", source, destination);
-
+    if (feof(fp))
+    {
+      //if the file is corrupted
+      printf("Something went wrong!\n");
+      destroy_data_structure(cities);//free memory before exiting
+      exit(1);
+    }
     for (int j = 0; j < uniqueCityNames; j++)
     {
       if (strcmp(cities[j].cityName, source) == 0)
@@ -65,7 +87,7 @@ void display_cities(City *cities, int N)
   /*
   Function: display_cities
   Purpose: to print the content of the data structure
-  Parameters: (City *cities) - address location to the first element of the dynamically allocated data structure;
+  Parameters: (City *cities) - address location to the dynamically allocated data structure;
   int N: number of Cities in the data structure;
   Return: void
   */
@@ -84,17 +106,6 @@ void display_cities(City *cities, int N)
     }
     printf("\n");
   }
-}
-
-void destroy_data_structure(City *cities)
-{
-  /*
-  Function: destroy_data_structure
-  Purpose: to free the memory dynamically allocated to the data structure
-  Parameters: (City *cities) - address location to the first element of the dynamically allocated data structure;
-  Return: void
-  */
-  free(cities); //free the allocated memory;
 }
 
 int main()
