@@ -1,0 +1,49 @@
+Karthaveerya Jammuladinne
+kaj886
+11242508
+CMPT 214
+
+drwxr-xr-x nobody nobody
+drwxrwxr-x kusalik cmpt214
+drwxrwxr-x nobody nobody
+drwxrwxr-x nobody cmpt250
+drwxrwxr-x nobody daemon
+drwxr-xr-x root root
+drwxrwxr-x root root
+drwxr-xr-x nobody cmpt332
+drwxrwxr-x nobody gradstd
+drwxrwxr-x nobody audio
+drwxr-xr-x nobody cmpt370
+drwxr-xr-x root root
+drwxrwxr-x root www
+drwxrwxr-x root root
+drwxrwxr-x nobody audio
+drwxr-xr-x root root
+drwxrwxr-x nobody audio
+drwxrwxr-x nobody audio
+drwxrwxr-x nobody cmpt818
+drwxrwxr-x nobody www
+drwxr-xr-x arf027 gradstd
+drwxr-xr-x nobody root
+drwxrwsr-x kusalik birladm
+drwxrwxr-x cjd032 cmpt215
+drwxr-xr-x root bin
+drwxr-sr-x makaroff cmpt332
+drwxr-xr-x root bin
+drwxr-xr-x root bin
+drwxr-xr-x root root
+drwxr-xr-x root bin
+drwxrwsr-x makaroff cmpt432
+drwxr-sr-x makaroff cmpt434
+drwxr-xr-x root bin
+drwxr-xr-x root root
+drwxr-xr-x dah208 student
+drwxr-xr-x root bin
+drwxr-xr-x root root
+drwxr-xr-x jen917 root
+drwxr-xr-x root root
+drwxr-xr-x rdc872 student
+drwxr-xr-- sph264 student
+drwxr-xr-x ssn183 student
+drwxr--r-- xil658 student
+drwxr-xr-x zzz195 student

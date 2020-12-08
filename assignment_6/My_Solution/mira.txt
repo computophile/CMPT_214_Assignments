@@ -1,0 +1,24 @@
+11 12
+LaunchPad
+OutsideDecontamination
+InsideDecontamination
+Reactor
+Laboratory
+MedBay
+Balcony
+OutsideCafeteria
+Admin
+GreenHouse
+Office
+LaunchPad | Reactor
+LaunchPad | OutsideDecontamination
+Reactor | InsideDecontamination
+Reactor | Laboratory
+Laboratory | Office
+Office | GreenHouse
+GreenHouse | Admin
+Admin | OutsideCafeteria
+OutsideCafeteria | Balcony
+Balcony | MedBay
+MedBay | OutsideDecontamination
+OutsideDecontamination | InsideDecontamination

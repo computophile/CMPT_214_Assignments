@@ -19,6 +19,10 @@ int main()
  
     p1 = &chr; // OK: Value of p1 can be changed 
  
+    int array[4][5];
+
+    array[][5] = 20;
+
     printf("the value of p1: %p", p1);
     return 0; 
 } 
