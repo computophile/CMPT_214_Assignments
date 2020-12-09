@@ -19,7 +19,7 @@ typedef struct location_details
   short int location_M[2]; //location of M(r,c)
 } LocationDetails;
 
-MiningData* read_geosurvey(FILE *fp)
+MiningData *read_geosurvey(FILE *fp)
 {
   short int rows, columns;
   fscanf(fp, "%hd %hd", &rows, &columns);
@@ -38,13 +38,12 @@ MiningData* read_geosurvey(FILE *fp)
   return data;
 }
 
-LocationDetails* camp_location(MiningData *data, FILE *fp)
+LocationDetails *camp_location(MiningData *data, FILE *fp)
 {
   rewind(fp);
-  LocationDetails *details = (LocationDetails *) malloc(sizeof(LocationDetails));
+  LocationDetails *details = (LocationDetails *)malloc(sizeof(LocationDetails));
 
-  fscanf(fp, "%hd %hd", &details->rows , &details->columns);
-
+  fscanf(fp, "%hd %hd", &details->rows, &details->columns);
 
   short int minimum_S = 0;
   short int minimum_F = 0;
@@ -90,8 +89,45 @@ LocationDetails* camp_location(MiningData *data, FILE *fp)
 
 void print_survey_map(MiningData *data, FILE *fp, LocationDetails *location_details)
 {
+  for (size_t i = 0; i < location_details->rows; i++)
+  {
+    if (location_details->location_R[0] == i)
+    {
+      for (size_t j = 0; j < location_details->columns; j++)
+      {
+        if (location_details->location_R[0] == i && location_details->location_R[1] == j)
+        {
+          printf("*");
+        }
+        else
+        {
+          printf("=");
+        }
+      }
+    }
+    else
+    {
+      for (size_t j = 0; j < location_details->columns; j++)
+      {
+        if (location_details->location_F[0] == i && location_details->location_F[1] == j)
+        {
+          printf("F");
+          continue;
+        }
+        if (location_details->location_M[0] == i && location_details->location_M[1] == j)
+        {
+          printf("M");
+          continue;
+        }
+        else
+        {
+          printf(".");
+        }
+      }
+    }
 
-  
+    printf("\n");
+  }
 }
 
 void deallocate_geosurvey(MiningData *data, LocationDetails *location_details)
@@ -103,7 +139,7 @@ void deallocate_geosurvey(MiningData *data, LocationDetails *location_details)
 int main(int argc, char *argv[])
 {
   FILE *fp;
-  fp = fopen("candy-geosurvey-small.txt", "r");
+  fp = fopen("candy-geosurvey.txt", "r");
   if (fp != NULL)
   {
     MiningData *data = read_geosurvey(fp);
