@@ -4,7 +4,6 @@
 typedef struct mining_data
 {
   short int R, F, M, S;
-
   // R is the shortest distance from grid location (r,c) to the river
   // M ins the shortest distance from grid location (r,c) to the nearest mine
   // F is the distance from the grid location (r,c) to the factory
@@ -13,7 +12,7 @@ typedef struct mining_data
 
 typedef struct location_details
 {
-  short int rows, columns;
+  short int rows, columns; //total numbers of rows and columns in the grid
   short int location_R[2]; //location of R(r,c)
   short int location_F[2]; //location of F(r,c)
   short int location_M[2]; //location of M(r,c)
@@ -21,26 +20,37 @@ typedef struct location_details
 
 MiningData *read_geosurvey(FILE *fp)
 {
+  /*
+  To store and read the mining data from the file to the data structure
+  Parameters: FILE *fp : Pointer to the file where the relevant data is stored;
+  Return: a pointer to a newly-allocated instance of that
+  data structure containing the geosurvey data from the file.
+  */
   short int rows, columns;
   fscanf(fp, "%hd %hd", &rows, &columns);
-  printf("Then number of Rows: %hd\n, The number of column: %hd\n", rows, columns);
-  printf("Reading the file\n");
 
   // dynamically allocating the memomory location;
   MiningData *data = (MiningData *)malloc(sizeof(MiningData) * rows * columns);
-  printf("THe size of MiningData = %ld\n", sizeof(MiningData));
 
   for (size_t i = 0; i < rows * columns; i++)
   {
     fscanf(fp, "%hd %hd %hd", &data[i].R, &data[i].F, &data[i].M);
-    data[i].S = data[i].R + data[i].M + (1.5 * data[i].F);
+    data[i].S = data[i].R + data[i].M + (1.5 * data[i].F); //calculating the value of S
   }
   return data;
 }
 
 LocationDetails *camp_location(MiningData *data, FILE *fp)
 {
+  /*
+  Function to determine from the geosurvey data the grid location that has
+  the optimal suitability measure S ( r, c )
+  Parameters; *data: Pointer to instance of that data structure containing the  geosurvey data.
+              *fp: pointer to the file where the relevant data is stored;
+  returns:   details: pointer to the data structure that holds relevant information;
+  */
   rewind(fp);
+
   LocationDetails *details = (LocationDetails *)malloc(sizeof(LocationDetails));
 
   fscanf(fp, "%hd %hd", &details->rows, &details->columns);
@@ -53,6 +63,7 @@ LocationDetails *camp_location(MiningData *data, FILE *fp)
   {
     if (i == 0)
     {
+      // initializing the base minimum distance
       minimum_S = data[0].S;
       minimum_F = data[0].F;
       minimum_M = data[0].M;
@@ -87,8 +98,11 @@ LocationDetails *camp_location(MiningData *data, FILE *fp)
   return details;
 }
 
-void print_survey_map(MiningData *data, FILE *fp, LocationDetails *location_details)
+void print_survey_map(MiningData *data, char FILEOUTPUT[20], LocationDetails *location_details)
 {
+  // write to this file;
+  FILE *fp;
+  fp = fopen(FILEOUTPUT, "w");
   for (size_t i = 0; i < location_details->rows; i++)
   {
     if (location_details->location_R[0] == i)
@@ -97,10 +111,12 @@ void print_survey_map(MiningData *data, FILE *fp, LocationDetails *location_deta
       {
         if (location_details->location_R[0] == i && location_details->location_R[1] == j)
         {
+          fprintf(fp, "*");
           printf("*");
         }
         else
         {
+          fprintf(fp, "=");
           printf("=");
         }
       }
@@ -111,23 +127,27 @@ void print_survey_map(MiningData *data, FILE *fp, LocationDetails *location_deta
       {
         if (location_details->location_F[0] == i && location_details->location_F[1] == j)
         {
+          fprintf(fp, "F");
           printf("F");
           continue;
         }
         if (location_details->location_M[0] == i && location_details->location_M[1] == j)
         {
+          fprintf(fp, "M");
           printf("M");
           continue;
         }
         else
         {
+          fprintf(fp, ".");
           printf(".");
         }
       }
     }
-
+    fprintf(fp, "\n");
     printf("\n");
   }
+  fclose(fp);
 }
 
 void deallocate_geosurvey(MiningData *data, LocationDetails *location_details)
@@ -139,12 +159,12 @@ void deallocate_geosurvey(MiningData *data, LocationDetails *location_details)
 int main(int argc, char *argv[])
 {
   FILE *fp;
-  fp = fopen("candy-geosurvey.txt", "r");
+  fp = fopen("candy-geosurvey-small.txt", "r");
   if (fp != NULL)
   {
     MiningData *data = read_geosurvey(fp);
     LocationDetails *location_details = camp_location(data, fp);
-    print_survey_map(data, fp, location_details);
+    print_survey_map(data, "river_output.txt", location_details);
     deallocate_geosurvey(data, location_details);
   }
   fclose(fp);
