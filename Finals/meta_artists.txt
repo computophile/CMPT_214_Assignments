@@ -1,0 +1,9 @@
+alternative-metal
+american-metalcore
+folk-metal
+metalcore
+metallic-hardcore
+nu-metal
+nu-metalcore
+progressive-metal
+progressive-metalcore

@@ -17,7 +17,7 @@ Encounter *generate_random_encounter(Creature *creatures, char encounterName[100
   {
     Creature selectedCreature = creatures[random_index(numberOfCreatures)];
 
-    // printf("challenge count at i %d, is : %hd\n", i, encounter->challengeRating);
+    // printf("challenge count at i %d, is :  %hd\n", i, encounter->challengeRating);
     // printf("The selected creature name: %s\n", selectedCreature.name[0]);
     if (encounter->challengeRating < challenge_rating_threshold)
     {
@@ -49,7 +49,7 @@ void print_encounter(Creature *creatures, Encounter *encounter)
 }
 
 void destroy_encounter(Encounter *encounter, int c){
-        for (short int i = 0; i < c; i++)
+      for (short int i = 0; i < c; i++)
       {
         free(encounter->encounterNames[i]);
       }

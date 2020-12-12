@@ -91,9 +91,9 @@ LocationDetails *camp_location(MiningData *data, FILE *fp)
       }
     }
   }
-  printf("The location of smallest F: (%hd, %hd)\n", details->location_F[0], details->location_F[1]);
-  printf("The location of smallest M: (%hd, %hd)\n", details->location_M[0], details->location_M[1]);
-  printf("The location of smallest S: (%hd, %hd)\n", details->location_R[0], details->location_R[1]);
+  // printf("The location of smallest F: (%hd, %hd)\n", details->location_F[0], details->location_F[1]);
+  // printf("The location of smallest M: (%hd, %hd)\n", details->location_M[0], details->location_M[1]);
+  // printf("The location of smallest S: (%hd, %hd)\n", details->location_R[0], details->location_R[1]);
 
   return details;
 }
@@ -159,14 +159,24 @@ void deallocate_geosurvey(MiningData *data, LocationDetails *location_details)
 int main(int argc, char *argv[])
 {
   FILE *fp;
-  fp = fopen("candy-geosurvey-small.txt", "r");
+  if (argc == 3)
+  {
+      fp = fopen(argv[1], "r");
   if (fp != NULL)
   {
     MiningData *data = read_geosurvey(fp);
     LocationDetails *location_details = camp_location(data, fp);
-    print_survey_map(data, "river_output.txt", location_details);
+    print_survey_map(data, argv[2], location_details);
     deallocate_geosurvey(data, location_details);
   }
+  else
+  {
+    printf("Error reading file, not enough permission.\n");
+    return 1;
+  }
+  
   fclose(fp);
   return 0;
+  }
+  return 1;
 }
