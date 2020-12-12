@@ -1,6 +1,12 @@
-// data structure for the creatures
+/*
+# Name: Mohammed Thamidur Rashid
+# Class: CMPT-214
+# Student Number: 11280257
+*/
 
 int numberOfCreatures;
+
+// data structure for the creatures
 
 typedef struct creature
 {

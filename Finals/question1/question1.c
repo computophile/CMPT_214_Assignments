@@ -1,3 +1,8 @@
+/*
+# Name: Mohammed Thamidur Rashid
+# Class: CMPT-214
+# Student Number: 11280257
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
